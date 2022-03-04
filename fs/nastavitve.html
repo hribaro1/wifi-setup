@@ -278,13 +278,13 @@ input:checked + .slider:before {
 			
 			submit.onclick = function submit(){
 				//FUNKCIJA SE IZVEDE IN STRAN PREUSMERI NA INDEX.HTML
-				var setgra = {app:{pwm:{gra:true}}};
-				var setnocni = {app:{pwm:{night:true}}};
+				var setgra = {app:{pwm:{gra:false}}};
+				var setnocni = {app:{pwm:{night:false}}};
 				console.log(nocniNacinValue);
 				console.log(kategorijaValue);
 				rpc_call("Config.Set", function (resp) {
 				window.location.href = "index.html";
-            }, { setgra, setnocni});
+                         }, {setgra, setnocni});
 
 
 			}
