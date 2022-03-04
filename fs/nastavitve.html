@@ -276,15 +276,7 @@ input:checked + .slider:before {
 			}
 			
 			function save(){
-				//FUNKCIJA SE IZVEDE IN STRAN PREUSMERI NA INDEX.HTML
-				var setgra = {app:{pwm:{gra:false}}};
-				var setnocni = {app:{pwm:{night:false}}};
-				console.log(nocniNacinValue);
-				console.log(kategorijaValue);
-				rpc_call("Config.Set", function (resp) {
 				window.location.href = "wifi.html";
-                         }, {setgra});
-
 
 			}
 			reset.onclick = function reset(){
