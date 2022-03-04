@@ -284,7 +284,7 @@ input:checked + .slider:before {
 				console.log(kategorijaValue);
 				rpc_call("Config.Set", function (resp) {
 				window.location.href = "index.html";
-                         }, {setgra, setnocni, save:true, reboot:true});
+                         }, {setgra, save:true, reboot:true});
 
 
 			}
