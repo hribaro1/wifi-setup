@@ -164,14 +164,14 @@ input:checked + .slider:before {
     }
 	
 		button {
-	border: 0;
-    border-radius: 0.3em;
-    color: #FF8200;
-	line-height: 2.4em;
-    font-size: 1.2em;
-    width: 100%;
-    display: block;
-	background: #EEEEEE;
+            border: 0;
+            border-radius: 0.3em;
+            color: #FFFFFF;
+            line-height: 2.4em;
+            font-size: 1.2em;
+            width: 100%;
+            display: block;
+			background: #56A0CE;
     }
 	
 
@@ -186,7 +186,6 @@ input:checked + .slider:before {
 	<div style="display:inline-block;width:320px;padding:5px;" class="screen">
 <div class="slidecontainer">
 	<p id="info">NASTAVITVE MODULA</p>
-	<form>
 	<div class="vrstica"><label class="left">NOČNI NAČIN: </label><label id="nocniNacinValue">ON</label><label class="switch right">
   <input type="checkbox" id="nocniNacin" checked>
   <span class="slider round"></span>
@@ -196,9 +195,9 @@ input:checked + .slider:before {
   <input type="checkbox" id="kategorija" checked>
   <span class="slider round" onClick=""></span>
 </label></div>
-	    <input id="submit" type="submit" value="Shrani" onClick="submit()"><br>
-		</form>
-		
+           <button id="save" onclick="save()"><span id="saves">&#x1F4BE;</span> Shrani</button>  
+		   <br>
+		   <br>		
 		<button id="reset">Reset na tovarniške nastavitve</button>
 
 
@@ -276,7 +275,7 @@ input:checked + .slider:before {
 				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
 			}
 			
-			submit.onclick = function submit(){
+			function save(){
 				//FUNKCIJA SE IZVEDE IN STRAN PREUSMERI NA INDEX.HTML
 				var setgra = {app:{pwm:{gra:false}}};
 				var setnocni = {app:{pwm:{night:false}}};
