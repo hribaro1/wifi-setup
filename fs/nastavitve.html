@@ -276,6 +276,8 @@ input:checked + .slider:before {
 			}
 			
 			function save(){
+			
+			        rpc_call("Config.Set", { app: { pwm: { gra: false } } });
 				window.location.href = "wifi.html";
 
 			}
