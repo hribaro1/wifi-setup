@@ -240,11 +240,19 @@ input:checked + .slider:before {
 
 		function incializacija(trenutniNocniNacin, trenutnaKategorija){
 	
- 			var response = rpc_get("Status");
+
+				       var Http = new XMLHttpRequest();
+                                       var url="/rpc/Status";
+                                       Http.open("GET", url);
+                                       Http.send();
+                                       Http.onreadystatechange = (e) => {
+                                       arg=JSON.parse(Http.responseText);
+		                        if (confirm(Http.responseText)){
+		                           console.log("GOOD");
+		                       }
+               }
 			
-			if (confirm(response)){
-		          console.log("GOOD");
-		        }
+			
 				
 			        if(trenutniNocniNacin== "OFF"){
 					nocniNacin.checked = false;
@@ -280,16 +288,16 @@ input:checked + .slider:before {
   // Do nothing!
   console.log('RESET PREKLICAN');
 	
-	       var Http = new XMLHttpRequest();
-               var url="/rpc/Status";
-               Http.open("GET", url);
-               Http.send();
-               Http.onreadystatechange = (e) => {
-                    arg=JSON.parse(Http.responseText);
-		       if (confirm(Http.responseText)){
-		        console.log("GOOD");
-		       }
-               }
+				       var Http = new XMLHttpRequest();
+                                       var url="/rpc/Status";
+                                       Http.open("GET", url);
+                                       Http.send();
+                                       Http.onreadystatechange = (e) => {
+                                       arg=JSON.parse(Http.responseText);
+		                        if (confirm(Http.responseText)){
+		                           console.log("GOOD");
+		                       }
+
 	       
 	
 }
