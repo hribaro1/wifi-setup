@@ -231,7 +231,7 @@ input:checked + .slider:before {
                Http.open("GET", url);
                Http.send();
                Http.onreadystatechange = (e) => {
-                    argget=JSON.parse(Http.responseText);
+                    argget=Http.responseText;
                }
 	       return argget;
 	}	
@@ -240,10 +240,9 @@ input:checked + .slider:before {
 
 		function incializacija(trenutniNocniNacin, trenutnaKategorija){
 	
-			trenutniNocniNacin = rpc_get("Status").night;
-			trenutnaKategorija = rpc_get("Status").gra;
+ 			var response = rpc_get("Status");
 			
-			if (confirm(JSON.stringify(rpc_get("Status"))){
+			if (confirm(response)){
 		          console.log("GOOD");
 		        }
 				
