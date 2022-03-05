@@ -238,7 +238,7 @@ input:checked + .slider:before {
 		//se zažene da se izpolni začetne vrednosti	
 
 		function incializacija(trenutniNocniNacin, trenutnaKategorija){
-		        rpc_get("Status");
+		        rpc_get("Status", arg);
 			trenutniNocniNacin = arg.night;
 			trenutnaKategorija = arg.gra;
 				
