@@ -237,18 +237,6 @@ input:checked + .slider:before {
 			       if (confirm(Http.responseText)){
 		                    console.log("GOOD");
 		               }
-               
-			        if(argget.night== false){
-					nocniNacin.checked = false;
-				}else{
-					nocniNacin.checked = true;
-				}
-				
-				if(argget.gra ==false){
-					kategorija.checked = false;
-				}else{
-					kategorija.checked = true;
-				}
 		   }
 			
 			nocniNacin.onclick = function nocniNacinSet(){
@@ -266,12 +254,11 @@ input:checked + .slider:before {
 			}
 			reset.onclick = function reset(){
 				if (confirm('Ali ste prepričani, da želite modul resetirati na tovarniške nastavitve?')) {
-  // Save it!
- console.log("RESET MODULA NA TOVARNIŠKE NASTAVITVE");
-} else {
-  // Do nothing!
-  console.log('RESET PREKLICAN');
-	
+                                      // Save it!
+                                    console.log("RESET MODULA NA TOVARNIŠKE NASTAVITVE");
+                                } else {
+                                       // Do nothing!
+                                     console.log('RESET PREKLICAN');
 				       var Http = new XMLHttpRequest();
                                        var url="/rpc/Status";
                                        Http.open("GET", url);
@@ -280,12 +267,10 @@ input:checked + .slider:before {
                                        arg=JSON.parse(Http.responseText);
 		                        if (confirm(Http.responseText)){
 		                           console.log("GOOD");
-		                       }
-
-	       
-	
-}
+		                        }	
+				       }
 				
+				}
 			}
 			
 			
