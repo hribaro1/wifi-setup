@@ -178,7 +178,7 @@ input:checked + .slider:before {
 	</style>
 </head>
 
-<body>
+<body onload="inicializacija()" >
 	
 			<div id="topBar"><a href="wifi.html" id="wifi" class="left"><img src="wifi.png" id="wifiImage"></a><a href="index.html"><img src="logo.png" id="logo" class="center"></a>
 			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
@@ -212,7 +212,7 @@ input:checked + .slider:before {
 			var reset = document.getElementById("reset");
 			var nocniNacinValue = document.getElementById("nocniNacinValue");
 			var kategorijaValue = document.getElementById("kategorijaValue");
-                        var arg;		
+                        var argpost, argget;		
 		
 	// rpc funckija, ki omogoča klice 
 
@@ -224,23 +224,28 @@ input:checked + .slider:before {
                 Http.send(JSON.stringify(arg));
 	}		
 
-	function rpc_get(method, arg) {
-               var Http = new XMLHttpRequest();
+	function rpc_get(method) {
+               var argget
+	       var Http = new XMLHttpRequest();
                var url="/rpc/"+method;
                Http.open("GET", url);
                Http.send();
                Http.onreadystatechange = (e) => {
-                    arg=JSON.parse(Http.responseText);
+                    argget=JSON.parse(Http.responseText);
                }
-	       return arg;
+	       return argget;
 	}	
 		
 		//se zažene da se izpolni začetne vrednosti	
 
-		window.onload = function incializacija(trenutniNocniNacin, trenutnaKategorija){
-		        rpc_get("Status", arg);
-			trenutniNocniNacin = arg.night;
-			trenutnaKategorija = arg.gra;
+		function incializacija(trenutniNocniNacin, trenutnaKategorija){
+	
+			trenutniNocniNacin = rpc_get("Status").night;
+			trenutnaKategorija = rpc_get("Status").gra;
+			
+			if (confirm(JSON.stringify(rpc_get("Status"))){
+		          console.log("GOOD");
+		        }
 				
 			        if(trenutniNocniNacin== "OFF"){
 					nocniNacin.checked = false;
