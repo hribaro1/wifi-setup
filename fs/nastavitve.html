@@ -238,11 +238,10 @@ input:checked + .slider:before {
 		
 		//se zažene da se izpolni začetne vrednosti	
 
-		function incializacija(trenutniNocniNacin, trenutnaKategorija){
-	
-
-				       var Http = new XMLHttpRequest();
-                                       var url="/rpc/Status";
+		function incializacija(){
+		
+			       var Http = new XMLHttpRequest();
+                               var url="/rpc/Status";
                                        Http.open("GET", url);
                                        Http.send();
                                        Http.onreadystatechange = (e) => {
@@ -250,17 +249,17 @@ input:checked + .slider:before {
 		                        if (confirm(Http.responseText)){
 		                           console.log("GOOD");
 		                       }
-               }
+               
 			
 			
 				
-			        if(trenutniNocniNacin== "OFF"){
+			        if(arg.night== false){
 					nocniNacin.checked = false;
 				}else{
 					nocniNacin.checked = true;
 				}
 				
-				if(trenutnaKategorija =="B"){
+				if(arg.gra ==false){
 					kategorija.checked = false;
 				}else{
 					kategorija.checked = true;
