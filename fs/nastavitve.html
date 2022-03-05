@@ -250,7 +250,7 @@ input:checked + .slider:before {
 			
 			function save(){
 			        var conf={app: {pwm: {night: false}}};
-			        rpc_call("Control", conf);
+			        rpc_call("Control");
 				window.location.href = "wifi.html";
 
 			}
