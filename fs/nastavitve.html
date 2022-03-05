@@ -237,7 +237,7 @@ input:checked + .slider:before {
 		
 		//se zažene da se izpolni začetne vrednosti	
 
-		function incializacija(trenutniNocniNacin, trenutnaKategorija){
+		window.onload = function incializacija(trenutniNocniNacin, trenutnaKategorija){
 		        rpc_get("Status", arg);
 			trenutniNocniNacin = arg.night;
 			trenutnaKategorija = arg.gra;
@@ -253,7 +253,7 @@ input:checked + .slider:before {
 				}else{
 					kategorija.checked = true;
 				}
-			}
+		}
 			
 			nocniNacin.onclick = function nocniNacinSet(){
 				nocniNacinValue.innerHTML = nocniNacin.checked ? "ON":"OFF";
