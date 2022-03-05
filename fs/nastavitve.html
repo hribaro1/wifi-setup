@@ -233,9 +233,6 @@ input:checked + .slider:before {
                                Http.send();
                                Http.onreadystatechange = (e) => {
                                    argget=JSON.parse(Http.responseText);
-				   if (confirm(Http.responseText)){
-		                      console.log("GOOD");
-		                   }
 				   if(argget.night==false){
 					nocniNacin.checked = false;
 				   }else{
@@ -269,16 +266,6 @@ input:checked + .slider:before {
                                 } else {
                                        // Do nothing!
                                      console.log('RESET PREKLICAN');
-				       var Http = new XMLHttpRequest();
-                                       var url="/rpc/Status";
-                                       Http.open("GET", url);
-                                       Http.send();
-                                       Http.onreadystatechange = (e) => {
-                                       arg=JSON.parse(Http.responseText);
-		                        if (confirm(Http.responseText)){
-		                           console.log("GOOD");
-		                        }	
-				       }
 				
 				}
 			}
