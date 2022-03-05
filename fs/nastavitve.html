@@ -195,12 +195,10 @@ input:checked + .slider:before {
   <input type="checkbox" id="kategorija" checked>
   <span class="slider round" onClick=""></span>
 </label></div>
-           <button id="save" onclick="save()"><span id="saves">&#x1F4BE;</span> Shrani</button>  
 		   <br>
 		   <br>		
-		<button id="reset">Reset na tovarniške nastavitve</button>
-
-
+		   <br>
+	<button id="save" onclick="save()"><span id="saves">&#x1F4BE;</span> Shrani</button>  
 		</div>
     </div>
 	
@@ -208,8 +206,6 @@ input:checked + .slider:before {
 	<script>
 			var nocniNacin = document.getElementById("nocniNacin");
 			var kategorija = document.getElementById("kategorija");
-			var submit = document.getElementById("submit");
-			var reset = document.getElementById("reset");
 			var nocniNacinValue = document.getElementById("nocniNacinValue");
 			var kategorijaValue = document.getElementById("kategorijaValue");
                         var argget;		
@@ -259,18 +255,8 @@ input:checked + .slider:before {
 				window.location.href = "index.html";
 
 			}
-			reset.onclick = function reset(){
-				if (confirm('Ali ste prepričani, da želite modul resetirati na tovarniške nastavitve?')) {
-                                      // Save it!
-                                    console.log("RESET MODULA NA TOVARNIŠKE NASTAVITVE");
-                                } else {
-                                       // Do nothing!
-                                     console.log('RESET PREKLICAN');
-				
-				}
-			}
-			
-			
+
+						
 
 	</script>
 </body>
