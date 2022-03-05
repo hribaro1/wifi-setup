@@ -221,7 +221,7 @@ input:checked + .slider:before {
                 var url="/rpc/"+method;
                 Http.open("POST", url);
 		Http.setRequestHeader("Content-Type", "application/json");
-                Http.send(arg);
+                Http.send(JSON.stringify(arg));
 	}		
 
 
