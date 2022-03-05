@@ -23,7 +23,7 @@
 			border-style: solid;
 			border-color: #CDCDCD;
 			border-width: 1px;
-			margin-left: 2px;
+			margin-left: 1px;
         }
 		
 		button[value="off"]{
@@ -182,39 +182,7 @@
 
 
 // rpc funkcija, ki omogoča rpc klice
-        var S = "setAttribute", A = "appendChild", H = "innerHTML", X, wl, c;
-        function rpc_call(method, cb, arg) {
-            var Y = new XMLHttpRequest();
-            Y.onreadystatechange = function () {
-                if (this.readyState != XMLHttpRequest.DONE) {
-                    return false;
-                }
-                let result = false;
-                if (this.status != 200) {
-                    if (this.responseText && this.responseText.length > 0) {
-                        let resp = JSON.parse(this.responseText);
-                        let s = '';
-                        Object.keys(resp).forEach(key => {
-                            let v = resp[key];
-                            s = s + '<b>' + key + ':</b> ' + v + '<br/>';
-                        });
-                        if (s.length)
-                            wl[H] = method + " error " + this.status + "<br/>" + s;
-                        else
-                            wl[H] = method + " error " + this.status + "<br/>" + this.responseText;
-                    }
-                    else
-                        wl[H] = method + " error (code " + this.status.toString() + ")";
-                    setTimeout(() => wl[H] = "", 5000);
-                }
-                else
-                    result = JSON.parse(this.responseText);
-                cb && cb(result, arg);
-            };
-            Y.open(arg ? "POST" : "GET", "/rpc/" + method, true);
-            Y.setRequestHeader("Content-Type", "application/json");
-            Y.send(arg ? JSON.stringify(arg) : null);
-        };
+
 
 
 
