@@ -145,7 +145,7 @@
                 bss[S]("class", "");
                 if(!resp)
                     return;
-                wl[H] = "Configuracija shranjena";
+                wl[H] = "Konfiguracija shranjena";
                 window.location.href = "save.html";
             }, { config, save: true, reboot: true });
         };
@@ -338,7 +338,7 @@
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
       <!--  <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked>    -->
-        <label for="bssid" id="b">Lock to selected BSSID</label>
+        <label for="bssid" id="b">Izberi SSID iz zgornjega spiska WIFI-jev</label>
         <br>
         <br>       
 	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani
