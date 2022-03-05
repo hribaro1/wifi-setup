@@ -216,11 +216,12 @@ input:checked + .slider:before {
 		
 	// rpc funckija, ki omogoča klice 
 
-	function rpc_call(method) {
+	function rpc_call(method, arg) {
 		var Http = new XMLHttpRequest();
                 var url="/rpc/"+method;
-                Http.open("GET", url);
-                Http.send();
+                Http.open("POST", url);
+		Http.setRequestHeader("Content-Type", "application/json");
+                Http.send(arg);
 	}		
 
 
@@ -248,8 +249,8 @@ input:checked + .slider:before {
 			}
 			
 			function save(){
-			
-			        rpc_call("Control");
+			        var conf={app: {pwm: {night: false}}};
+			        rpc_call("Control", conf);
 				window.location.href = "wifi.html";
 
 			}
