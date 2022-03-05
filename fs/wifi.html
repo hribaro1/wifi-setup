@@ -73,7 +73,7 @@
                     s = s + key + ': ' + v + '\n';
                 });
                 g('conn').title = s;
-                c[H] = '<b>' + resp.app + '</b><br/>v' + resp.fw_version + '<br/>' + resp.id;
+                c[H] = '<b>' + resp.id + '</b><br>';
 
                 // Enablng controls
                 b1.disabled = false;
@@ -327,11 +327,11 @@
 			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
 
 
-                    <p id='info'>WiFi NASTAVITVE</p>
+                    <p id='info'>WIFI NASTAVITVE</p>
                     <p id='conn' class="center"></p>
 
-        <p id="details">Pritisnite <b>&#x1F50D; Išči</b> in izberite vaše WiFi omrežje.</p>
-        <button id="scan" onclick="scan_rpc()"><span id="scans">&#x1F50D;</span> Išči</button>
+        <p id="details">Pritisnite <b>&#x1F50D; Iskanje</b> in izberite WIFI za povezavo na internet.</p>
+        <button id="scan" onclick="scan_rpc()"><span id="scans">&#x1F50D;</span> Iskanjei</button>
         <p id='wl'></p>
         <input id="s" name="n" length=32 placeholder='SSID'>
         <br>
@@ -344,9 +344,8 @@
 	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani
         </button>
         <br>
-        <br>
         <button id="reset" title="Reset network settings"
-            onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi
+            onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi 
         </button>
 
 
