@@ -212,7 +212,7 @@ input:checked + .slider:before {
 			var reset = document.getElementById("reset");
 			var nocniNacinValue = document.getElementById("nocniNacinValue");
 			var kategorijaValue = document.getElementById("kategorijaValue");
-                        var S = "setAttribute", A = "appendChild", H = "innerHTML", X, wl, c;		
+                        var arg;		
 		
 	// rpc funckija, ki omogoča klice 
 
@@ -243,13 +243,14 @@ input:checked + .slider:before {
 			
 			nocniNacin.onclick = function nocniNacinSet(){
 				nocniNacinValue.innerHTML = nocniNacin.checked ? "ON":"OFF";
+				arg = 
 			}
 			kategorija.onclick = function kategorijaSet(){
 				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
 			}
 			
 			function save(){
-			        var arg = {app: {pwm: {night: false}}};
+			        var arg = {app: {pwm: {night: nocniNacin.checked, gra: kategorija.checked}}};
 			        rpc_call("Control", arg);
 				window.location.href = "index.html";
 
