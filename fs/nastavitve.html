@@ -233,10 +233,10 @@ input:checked + .slider:before {
                                Http.send();
                                Http.onreadystatechange = (e) => {
                                    argget=JSON.parse(Http.responseText);
+				   if (confirm(Http.responseText)){
+		                      console.log("GOOD");
+		                   }
 			       }        
-			       if (confirm(Http.responseText)){
-		                    console.log("GOOD");
-		               }
 		   }
 			
 			nocniNacin.onclick = function nocniNacinSet(){
