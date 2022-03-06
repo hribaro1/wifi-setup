@@ -150,9 +150,7 @@
             }, { config, save: true, reboot: true });		
         };
 	     
-	    
-	    
-        function reset_rpc() {
+	function save_rpc1() {
             let bs = g('reset');
             let old = bs.style.background;
             bs.disabled = true;
@@ -170,6 +168,26 @@
             }, { config, save: true, reboot: true });
         };
 
+	    
+        function reset_rpc() {
+            let bs = g('saveap');
+            let old = bs.style.background;
+            bs.disabled = true;
+            bs.style.background = '#4698CB';
+            let bss = g('resets');
+            bss[S]("class", "spin");
+            wl[H] = "Resetting...";
+            
+            var config = { wifi: { ap: { enable: true } } };
+
+            rpc_call("Config.Set", function (resp) {
+                wl[H] = "Settings changed";
+                window.location.href = "save.html";
+            }, { config, save: true, reboot: true });
+        };
+
+	    
+	    
         document.addEventListener('readystatechange', () => {
             if (document.readyState == 'complete') {
                 wl = g('wl'), c = g('conn');
@@ -346,10 +364,13 @@
         <br>
         <br>	    
 	    
-        <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani in izklopi AP
+        <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani NE izklopi AP
         </button>
         <br>
-        <br>
+        <button id="saveap" onclick="save_rpc1()"> <span id="saves">&#x1F578;</span> Izklopi AP
+        </button>
+
+	    <br>
         <button id="reset" title="Reset network settings"
             onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi AP
         </button>
