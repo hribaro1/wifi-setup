@@ -159,7 +159,7 @@
             bss[S]("class", "spin");
             wl[H] = "Resetting...";
 
-            var config = { wifi: { ap: { enable: true } } };
+            var config = { wifi: { ap: { enable: false } } };
 
             rpc_call("Config.Set", function (resp) {
                 wl[H] = "Settings changed";
