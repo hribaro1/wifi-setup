@@ -2,6 +2,31 @@ body {
   font: 1.0em Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
+		#logo{
+			text-align: center;
+			height: 35px;
+			width:auto;
+			padding-left: 18px;
+			
+		}
+			#topBar{
+		width: 320px;
+		height: 50px;
+		display: inline-block;
+		margin-top: 20px;
+		
+	}
+		
+			#settingsImage{
+		width:30px;
+		height: auto;
+	}
+	#wifiImage{
+		width:30px;
+		height: auto;
+	}
+
+
 #header {
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.87);
