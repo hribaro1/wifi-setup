@@ -127,6 +127,7 @@
                 });
             });
         };
+	    
         function save_rpc() {
             let bs = g('save');
             let old = bs.style.background;
@@ -170,14 +171,12 @@
                        window.location.href = "index.html";
                        }, { config, save: true, reboot: true});
 		    } else {
-		      if (confirm ("mqtt povezava ni uspela, preveri ponovno ustreznost gesla"){}
+		      if(confirm("mqtt povezava ni uspela, preveri ponovno ustreznost gesla"){}
 		    }
 		}   		        
-            }, delayInMilliseconds);
-		
-		
-		
+            }, delayInMilliseconds);	
         };
+	    
         function reset_rpc() {
             let bs = g('reset');
             let old = bs.style.background;
@@ -377,10 +376,6 @@
             onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi 
         </button>
         <br>
-        <button id="stopap" title="Stop Access Point"
-            onclick="p('Terminate AP mode, reset and get connected to WIFI?', reset_ap)"><span id="resets">&#x1F198;</span> Ponastavi 
-        </button>
-	    
 
         <br>
     </div>
