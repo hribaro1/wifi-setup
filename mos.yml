@@ -17,6 +17,8 @@ filesystem:
   - fs
 
 config_schema:
+  - [ "cportal", "o", {title: "Captive Portal configurations"}]
+  - [ "cportal.index", "wifi_portal.html" ]
 
 libs:
   - origin: https://github.com/mongoose-os-libs/wifi
@@ -25,6 +27,8 @@ libs:
   - origin: https://github.com/mongoose-os-libs/rpc-ws
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
   - origin: https://github.com/mongoose-os-libs/rpc-service-wifi
+  - origin: https://github.com/tripflex/captive-portal-wifi-rpc
+  
   
 cdefs:
   MG_ENABLE_DNS: 1
