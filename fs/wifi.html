@@ -73,7 +73,7 @@
                     s = s + key + ': ' + v + '\n';
                 });
                 g('conn').title = s;
-                c[H] = '<b>' + resp.app + '</b><br/>v' + resp.fw_version + '<br/>' + resp.id;
+                c[H] = '<b>' + resp.id + '</b><br>';
 
                 // Enablng controls
                 b1.disabled = false;
@@ -173,7 +173,7 @@
         document.addEventListener('readystatechange', () => {
             if (document.readyState == 'complete') {
                 wl = g('wl'), c = g('conn');
-                get_info_rpc()
+               // get_info_rpc()
             };
         });
 
