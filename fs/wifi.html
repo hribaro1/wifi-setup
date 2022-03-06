@@ -137,7 +137,7 @@
             wl[H] = "Shranjevanje...";
 
             var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
-            var config = { wifi: { sta: sta, ap: { enable: false } } };
+            var config = { wifi: { sta: sta, ap: { enable: true } } };
 
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
@@ -147,8 +147,44 @@
                     return;
                 wl[H] = "Configuracija shranjena";
                 window.location.href = "save.html";
-            }, { config, save: true, reboot: true });
+            }, { config, save: true, reboot: false });
+		
+  var delayInMilliseconds = 10000; //10 second
+  setTimeout(function() {
+      var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };		
+      var config = { wifi: { sta: sta, ap: { enable: false } } }; 
+      var Http = new XMLHttpRequest();
+      var url="/rpc/Connected";
+      Http.open("GET", url);
+      Http.send();
+      Http.onreadystatechange = (e) => {
+         argget=JSON.parse(Http.responseText);
+         if(argget.mqtt==true){
+             rpc_call("Config.Set", function (resp) {
+             bs.disabled = false;
+             bs.style.background = old;
+             bss[S]("class", "");
+             if(!resp)
+               return;
+             wl[H] = "Konfiguracija shranjena";
+             window.location.href = "index.html";
+             }, { config, save: true, reboot: true});
+         } else {
+	  if (confirm ("potrjujes da ni mqtt-ja")) {}
+	 }
+      }   		        
+  }, delayInMilliseconds);			
+		
+		
+		
         };
+	    
+	    
+	    
+	    
+	    
+	    
+	    
         function reset_rpc() {
             let bs = g('reset');
             let old = bs.style.background;
@@ -330,7 +366,7 @@
                     <p id='info'>WiFi NASTAVITVE</p>
                     <p id='conn' class="center"></p>
 
-        <p id="details">Pritisnite <b>&#x1F50D; Išči</b> in izberite vaše WiFi omrežje.</p>
+        <p id="details">Pritisnite <b>&#x1F50D; Iskanje</b> in izberite WiFi za povezavo.</p>
         <button id="scan" onclick="scan_rpc()"><span id="scans">&#x1F50D;</span> Išči</button>
         <p id='wl'></p>
         <input id="s" name="n" length=32 placeholder='SSID'>
@@ -339,7 +375,7 @@
         <br>
         <br>
         <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked >
-        <label for="bssid" id="b">Lock to selected BSSID</label>
+        <label for="bssid" id="b">Izberi SSID za WiFi povezavo</label>
         <br>
         <br>	    
 	    
