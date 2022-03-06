@@ -19,6 +19,10 @@ filesystem:
 config_schema:
   - [ "cportal", "o", {title: "Captive Portal configurations"}]
   - [ "cportal.index", "wifi_portal.html" ]
+  - [ "cportal.rpc.enable", "b", true, {title: "Enable WiFi captive portal RPC endpoints on device boot"}]
+  - [ "cportal.rpc.disable", "b", true, {title: "Disable RPC endpoints after successful WiFi test"}]
+  - [ "cportal.rpc.apsta", "b", false, {title: "(ESP32 only) When RPC is enabled, make sure device is in AP+STA mode to prevent client disconnect when Scan called to switch"}]
+  
 
 libs:
   - origin: https://github.com/mongoose-os-libs/wifi
