@@ -8,7 +8,7 @@
         function g(i) { return document.getElementById(i); };
         function p(t, l) { if (confirm(t)) l(); };
         function E(s) { return document.createElement(s) };
-        var S = "setAttribute", A = "appendChild", H = "innerHTML", X, wl, c;
+        var S = "setAttribute", A = "appendChild", H = "innerHTML", X, wl, c, argget;
 
         function rpc_call(method, cb, arg) {
             var Y = new XMLHttpRequest();
@@ -137,7 +137,7 @@
             wl[H] = "Shranjevanje...";
 
             var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
-            var config = { wifi: { sta: sta, ap: { enable: false } } };
+            var config = { wifi: { sta: sta, ap: { enable: true } } };
 
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
@@ -146,8 +146,35 @@
                 if(!resp)
                     return;
                 wl[H] = "Konfiguracija shranjena";
-                window.location.href = "save.html";
-            }, { config, save: true, reboot: true });
+                window.location.href = "index.html";
+            }, { config, save: true});
+	    
+            var delayInMilliseconds = 10000; //10 second
+            setTimeout(function() {
+                var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };		
+		var config = { wifi: { sta: sta, ap: { enable: false } } }; 
+		var Http = new XMLHttpRequest();
+                var url="/rpc/Connected";
+                Http.open("GET", url);
+                Http.send();
+                Http.onreadystatechange = (e) => {
+                    argget=JSON.parse(Http.responseText);
+		    if(argget.mqtt==true){
+   		       rpc_call("Config.Set", function (resp) {
+                       bs.disabled = false;
+                       bs.style.background = old;
+                       bss[S]("class", "");
+                       if(!resp)
+                         return;
+                       wl[H] = "Konfiguracija shranjena";
+                       window.location.href = "index.html";
+                       }, { config, save: true, reboot: true});
+		    }
+		}   		        
+            }, delayInMilliseconds);
+		
+		
+		
         };
         function reset_rpc() {
             let bs = g('reset');
@@ -347,7 +374,11 @@
         <button id="reset" title="Reset network settings"
             onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi 
         </button>
-
+        <br>
+        <button id="stopap" title="Stop Access Point"
+            onclick="p('Terminate AP mode, reset and get connected to WIFI?', reset_ap)"><span id="resets">&#x1F198;</span> Ponastavi 
+        </button>
+	    
 
         <br>
     </div>
