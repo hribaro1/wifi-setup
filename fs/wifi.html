@@ -136,7 +136,7 @@
             bss[S]("class", "spin");
             wl[H] = "Shranjevanje...";
 
-            var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
+            var sta = { enable: true, ssid: g('s').value, pass: g('p').value} //, bssid: g('bssid').checked===true ? g('b').innerText : '' };
             var config = { wifi: { sta: sta } };
 
             rpc_call("Config.Set", function (resp) {
@@ -157,7 +157,7 @@
             bs.style.background = '#4698CB';
             let bss = g('savesap');
             bss[S]("class", "spin");
-            wl[H] = "Saving remove AP...";
+            wl[H] = "Removing AP...";
 
             var config = { wifi: { ap: { enable: false } } };
 
@@ -175,9 +175,10 @@
             bs.style.background = '#4698CB';
             let bss = g('resets');
             bss[S]("class", "spin");
-            wl[H] = "Resetting...";
+            wl[H] = "Resetting STA, enabling AP...";
             
-            var config = { wifi: { ap: { enable: true } } };
+	    var sta = { enable: true, ssid: "", pass: "" }
+            var config = { wifi: {sta: sta, ap: { enable: true } } };
 
             rpc_call("Config.Set", function (resp) {
                 wl[H] = "Settings changed";
@@ -357,9 +358,8 @@
         <br>
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
-        <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked >
-        <label for="bssid" id="b">Izberi SSID za WiFi povezavo</label>
-        <br>
+        <!--input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked -->
+        <!--label for="bssid" id="b">Izberi SSID za WiFi povezavo</label-->
         <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani, NE izklopi-AP
         </button>
         <br>
