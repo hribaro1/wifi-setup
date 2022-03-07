@@ -177,7 +177,7 @@
             bss[S]("class", "spin");
             wl[H] = "Resetting STA, enabling AP...";
             
-	    var sta = { enable: true, ssid: "", pass: "" }
+	    var sta = { enable: false, ssid: "", pass: "" }
             var config = { wifi: {sta: sta, ap: { enable: true } } };
 
             rpc_call("Config.Set", function (resp) {
