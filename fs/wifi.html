@@ -137,7 +137,7 @@
             wl[H] = "Shranjevanje...";
 
             var sta = { enable: true, ssid: g('s').value, pass: g('p').value} //, bssid: g('bssid').checked===true ? g('b').innerText : '' };
-            var config = { wifi: { sta: sta } };
+            var config = { wifi: { sta: sta, ap: { enable: false } } };
 
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
@@ -358,7 +358,7 @@
         <br>
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
-        <!--input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked -->
+        <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked >
         <!--label for="bssid" id="b">Izberi SSID za WiFi povezavo</label-->
         <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani, NE izklopi-AP
         </button>
