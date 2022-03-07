@@ -73,7 +73,7 @@
                     s = s + key + ': ' + v + '\n';
                 });
                 g('conn').title = s;
-                c[H] = '<b>' + resp.id + '<b><br/>sta ip:' + resp.wifi.sta_ip + '<br/>ap ip:' + resp.wifi.ap_ip + '<br/>status:' + resp.wifi.status + '<br/>SSID:' + resp.wifi.ssid;
+                c[H] = '<b>MODUL:     ' + resp.id + '<b><br/>STA_IP:    ' + resp.wifi.sta_ip + '<br/>AP_IP:     ' + resp.wifi.ap_ip + '<br/>STATUS:   ' + resp.wifi.status + '<br/>SSID:      ' + resp.wifi.ssid;
 		    
                 // Enablng controls
                 b1.disabled = false;
@@ -85,7 +85,7 @@
                 b3.style.background = old3;
                 si.disabled = false;
                 pi.disabled = false;
-                scan_rpc();
+                //scan_rpc();
             });
         };
 
@@ -363,11 +363,11 @@
         <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani, NE izklopi-AP
         </button>
         <br>
-        <button id="saveap" onclick="save_rpc1()"> <span id="savesap">&#x1F4F6;</span> NE shrani, Izklopi-AP
+        <button id="saveap" onclick="save_rpc1()"> <span id="savesap">&#x1F4F6;</span> Izklopi-AP, NE shrani
         </button>
 	<br>
         <button id="reset" title="Reset network settings"
-            onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Ponastavi AP
+            onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F501;</span> Ponastavi AP
         </button>
 
 
