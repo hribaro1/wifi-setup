@@ -136,8 +136,8 @@
             bss[S]("class", "spin");
             wl[H] = "Shranjevanje...";
 
-            var sta = { enable: true, ssid: g('s').value, pass: g('p').value} //, bssid: g('bssid').checked===true ? g('b').innerText : '' };
-            var config = { wifi: { sta: sta, ap: { enable: false } } };
+            var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
+            var config = { wifi: { sta: sta, ap: { enable: true } } };
 
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
