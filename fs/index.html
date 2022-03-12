@@ -207,13 +207,6 @@
 			if(button.id == "nocni"){
 				//nocni način funkcija
 				console.log("nocni was changed to: " + button.value);
-				if button.value=="on" {
-					arg = {app: {mode: {night: true}}};
-					rpc_call_post("Control", arg);
-				} else {
-					arg = {app: {mode: {night: false}}};
-					rpc_call_post("Control", arg);
-				}
 				
 			}else if (button.id = "auto"){
 				//auto način funkcija
