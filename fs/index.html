@@ -194,6 +194,8 @@
 
 		function onOff(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg;
+			
 			if(button.value == "on"){
 				button.value="off";
 			}	else if(button.value == "off"){
@@ -205,6 +207,14 @@
 			if(button.id == "nocni"){
 				//nocni način funkcija
 				console.log("nocni was changed to: " + button.value);
+				if button.value=="on" {
+					arg = {app: {mode: {night: true}}};
+					rpc_call_post("Control", arg);
+				} else {
+					arg = {app: {mode: {night: false}}};
+					rpc_call_post("Control", arg);
+				}
+				
 			}else if (button.id = "auto"){
 				//auto način funkcija
 				console.log("auto  was changed to: " + button.value);
@@ -225,11 +235,15 @@ var auto = document.getElementById("auto");
 var poletni = document.getElementById("poletni");
 var boost = document.getElementById("boost");
 var sliderValue = slider.value*25;
+
 output.innerHTML = slider.value;
 		
 
 //INCIALIZACIJA ZAČETNIH VREDNOSTI, JE TREBA ZAGNAT KO SE NALOŽI STRAN document.onLoad()
 function incializacijaCP(hitrost, nocni, auto, poletni, boost){
+
+	
+	
 	var sliderValue=this.hitrost*25;
 	output.innerHTML = this.hitrost;
 	slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
@@ -237,6 +251,10 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 	auto.value=this.auto;
 	poletni.value=this.poletni;
 	boost.value=this.boost;
+	
+	
+	
+	
 }
 
 //Se zažene ob vsaki spremembi sliderja
