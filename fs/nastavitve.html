@@ -231,8 +231,9 @@ input:checked + .slider:before {
                 Http.open("GET", url);
                 Http.send();
 	        Http.onreadystatechange = (e) => {
-		  return Http.responseText
-		}	
+		  argget=JSON.parse(Http.responseText);
+		}
+		return argget
 	}		
 		
 		
@@ -240,7 +241,7 @@ input:checked + .slider:before {
 
 		function inicializacija() {
                                    
-			argget=JSON.parse(rpc_call_get("Status"));
+//			argget=JSON.parse(rpc_call_get("Status"));
 			if(argget.night==false){
 				nocniNacin.checked = false;
 			}else{
