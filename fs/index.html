@@ -201,7 +201,7 @@
 				button.value="on";
 				vred=true;
 			}
-			arg = {app: {mode: {nigt: vred}}};
+			arg = {app: {mode: {night: vred}}};
 			rpc_call_post("Control", arg);	
 	         }
 
@@ -300,6 +300,7 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 				}else{
 					summer.value = "off";
 				}   
+				output=argget.val;
 				slider.value=argget.val;
 			}
 		   }
