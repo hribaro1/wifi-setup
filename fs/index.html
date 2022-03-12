@@ -163,16 +163,16 @@
         <br>
 		<div id="buttons">
         	<button id="nocni" title="Nočni način" value="off"
-        	    onclick="onOff(this, this.value)"><span id="inocni">nočni</span> 
+        	    onclick="onOff(this)"><span id="inocni">nočni</span> 
         	</button>
 			        <button id="auto" title="Senzorski način" value="off"
-        	    onclick="onOff(this, this.value)"><span id="iauto">auto</span> 
+        	    onclick="onOff(this)"><span id="iauto">auto</span> 
         	</button>
 			        <button id="poletni" title="Poletni način" value="off"
-        	    onclick="onOff(this, this.value)"><span id="ipoletni">poletni</span> 
+        	    onclick="onOff(this)"><span id="ipoletni">poletni</span> 
         	</button>
 			        <button id="boost" title="Boost način" value="off"
-        	    onclick="onOff(this, this.value)"><span id="iboost">boost</span> 
+        	    onclick="onOff(this)"><span id="iboost">boost</span> 
         	</button>
 		</div>
     </div>
@@ -196,6 +196,7 @@
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
 			var arg;
 			
+			
 			if(button.value == "on"){
 				button.value="off";
 			}	else if(button.value == "off"){
@@ -206,6 +207,10 @@
 			if(button.id == "nocni"){
 				//nocni način funkcija
 				console.log("nocni was changed to: " + button.value);	
+			
+			
+			
+			
 			}
 			if (button.id = "auto"){
 				//auto način funkcija
