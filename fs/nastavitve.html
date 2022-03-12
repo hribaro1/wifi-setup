@@ -240,20 +240,25 @@ input:checked + .slider:before {
 		//se zažene da se izpolni začetne vrednosti	
 
 		function inicializacija() {
-                                   
+                 
 //			argget=JSON.parse(rpc_call_get("Status"));
-			rpc_call_get("Status");
-			
-			if(argget.night==false){
-				nocniNacin.checked = false;
-			}else{
-				nocniNacin.checked = true;
+			var Http = new XMLHttpRequest();
+        	        var url="/rpc/Status";
+                	Http.open("GET", url);
+        	        Http.send();
+	 		Http.onreadystatechange = (e) => {
+		  		argget=JSON.parse(Http.responseText);
+				if(argget.night==false){
+					nocniNacin.checked = false;
+				}else{
+					nocniNacin.checked = true;
+				}
+				if(argget.gra==false){
+					kategorija.checked = false;
+				}else{
+					kategorija.checked = true;
+				}        
 			}
-			if(argget.gra==false){
-				kategorija.checked = false;
-			}else{
-				kategorija.checked = true;
-			}        
 		   }
 			
 			nocniNacin.onclick = function nocniNacinSet(){
