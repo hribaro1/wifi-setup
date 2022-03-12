@@ -190,13 +190,9 @@
 		Http.setRequestHeader("Content-Type", "application/json");
                 Http.send(JSON.stringify(arg));
 	}
-
-
 		function onOffNocni(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
 			var arg, vred;
-			
-			
 			if(button.value == "on"){
 				button.value="off";
 				vred=false;
@@ -207,8 +203,54 @@
 			}
 			arg = {app: {mode: {nigt: vred}}};
 			rpc_call_post("Control", arg);	
-	}
+	         }
 
+		function onOffAuto(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {avto: vred}}};
+			rpc_call_post("Control", arg);	
+	         }
+		function onOffPoletni(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {summer: vred}}};
+			rpc_call_post("Control", arg);	
+	         }
+		function onOffBoost(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				arg = {app: {mode: {boost: vred}}, {pwm: {val: 0 }}};
+				rpc_call_post("Control", arg);	
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+				arg = {app: {mode: {boost: vred}}, {pwm: {val: 4 }}};
+				rpc_call_post("Control", arg);	
+		                }
+	         }
+
+		
 //SLIDER ZA HITROST
 var slider = document.getElementById("hitrost");
 var output = document.getElementById("vrednost");
@@ -247,7 +289,7 @@ slider.oninput = function sliderInput(value) {
   slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
 	
 	//shrani vrednost v parametre
-	var arg = {app: {pwm: {val: sliderValue/25}}};
+	var arg = {app: {pwm: {val: sliderValue/25}}, {old: {speed: this.value}}};
 	rpc_call_post("Control", arg);	
 }
 
