@@ -291,8 +291,9 @@ output.innerHTML = slider.value;
 				}else{
 					poletni.value = "off";
 				}   
-				output=argget.val;
-				slider.value=argget.val;
+				output.value=argget.val;
+				slider.value=argget.val;	  	
+				output.innerHTML = slider.value;
 			}
 		   }
 
@@ -304,7 +305,7 @@ slider.oninput = function sliderInput(value) {
   slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
 	
 	//shrani vrednost v parametre
-	var arg = {app: {pwm: {val: sliderValue/25}, old: {speed: this.value}}};
+	var arg = {app: {pwm: {val: sliderValue/25}}};
 	rpc_call_post("Control", arg);	
 }
 
