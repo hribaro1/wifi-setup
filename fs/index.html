@@ -281,24 +281,24 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 	 		Http.onreadystatechange = (e) => {
 		  		argget=JSON.parse(Http.responseText);  
 				if(argget.mnight==false){
-					nocni.value = false;
+					nocni.value = "off";
 				}else{
-					nocni.value = true;
+					nocni.value = "on";
 				}
 				if(argget.mboost==false){
-					boost.value = false;
+					boost.value = "off";
 				}else{
-					boost.value = true;
+					boost.value = "on";
 				}   
 				if(argget.mavto==false){
-					auto.value = false;
+					auto.value = "off";
 				}else{
-					auto.value = true;
+					auto.value = "on";
 				}
 				if(argget.msummer==false){
-					msummer.value = false;
+					summer.value = "on";
 				}else{
-					msummer.value = true;
+					summer.value = "off";
 				}   
 				slider.value=argget.val;
 			}
