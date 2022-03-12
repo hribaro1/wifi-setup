@@ -163,16 +163,16 @@
         <br>
 		<div id="buttons">
         	<button id="nocni" title="Nočni način" value="off"
-        	    onclick="onOff(this)"><span id="inocni">nočni</span> 
+        	    onclick="onOffNocni(this)"><span id="inocni">nočni</span> 
         	</button>
 			        <button id="auto" title="Senzorski način" value="off"
-        	    onclick="onOff(this)"><span id="iauto">auto</span> 
+        	    onclick="onOffAuto(this)"><span id="iauto">auto</span> 
         	</button>
 			        <button id="poletni" title="Poletni način" value="off"
-        	    onclick="onOff(this)"><span id="ipoletni">poletni</span> 
+        	    onclick="onOffPoletni(this)"><span id="ipoletni">poletni</span> 
         	</button>
 			        <button id="boost" title="Boost način" value="off"
-        	    onclick="onOff(this)"><span id="iboost">boost</span> 
+        	    onclick="onOffBoost(this)"><span id="iboost">boost</span> 
         	</button>
 		</div>
     </div>
@@ -192,20 +192,21 @@
 	}
 
 
-		function onOff(button){
+		function onOffNocni(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
-			var arg;
+			var arg, vred;
 			
 			
 			if(button.value == "on"){
 				button.value="off";
+				vred=false;
+				
 			}	else if(button.value == "off"){
 				button.value="on";
+				vred=true;
 			}
-				
-			// CALL FUNCTIONS BY ID
-			console.log("ID: "+button.id, "Value: "+button.value);	
-			
+			arg = {app: {mode: {nigt: vred}}};
+			rpc_call_post("Control", arg);	
 	}
 
 //SLIDER ZA HITROST
