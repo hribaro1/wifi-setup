@@ -252,6 +252,7 @@
 
 		
 //SLIDER ZA HITROST
+var argget
 var slider = document.getElementById("hitrost");
 var output = document.getElementById("vrednost");
 var nocni = document.getElementById("nocni");
@@ -281,17 +282,7 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
                 	Http.open("GET", url);
         	        Http.send();
 	 		Http.onreadystatechange = (e) => {
-		  		argget=JSON.parse(Http.responseText);
-				if(argget.night==false){
-					nocniNacin.checked = false;
-				}else{
-					nocniNacin.checked = true;
-				}
-				if(argget.gra==false){
-					kategorija.checked = false;
-				}else{
-					kategorija.checked = true;
-				}        
+		  		argget=JSON.parse(Http.responseText);  
 			}
 		   }
 
