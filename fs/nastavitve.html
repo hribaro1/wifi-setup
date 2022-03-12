@@ -225,7 +225,7 @@ input:checked + .slider:before {
                 Http.send(JSON.stringify(arg));
 	}		
 
-	function rpc_call_get() {
+	function rpc_call_get(method) {
 		var Http = new XMLHttpRequest();
                 var url="/rpc/"+method;
                 Http.open("GET", url);
@@ -240,7 +240,7 @@ input:checked + .slider:before {
 
 		function inicializacija() {
                                    
-			argget=JSON.parse(rpc_call_get());
+			argget=JSON.parse(rpc_call_get("Status"));
 			if(argget.night==false){
 				nocniNacin.checked = false;
 			}else{
