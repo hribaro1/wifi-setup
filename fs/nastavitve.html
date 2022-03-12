@@ -224,17 +224,6 @@ input:checked + .slider:before {
 		Http.setRequestHeader("Content-Type", "application/json");
                 Http.send(JSON.stringify(arg));
 	}		
-
-	function rpc_call_get(method) {
-		var Http = new XMLHttpRequest();
-                var url="/rpc/"+method;
-                Http.open("GET", url);
-                Http.send();
-	        Http.onreadystatechange = (e) => {
-		  argget=JSON.parse(Http.responseText);
-		}
-		return argget
-	}		
 		
 		
 		//se zažene da se izpolni začetne vrednosti	
@@ -270,7 +259,7 @@ input:checked + .slider:before {
 			
 			function save(){
 			        var arg = {app: {pwm: {night: nocniNacin.checked, gra: kategorija.checked}}};
-			        rpc_call_post("Control", arg);
+			        rpc_call_post("ControlParam", arg);
 				window.location.href = "index.html";
 
 			}
