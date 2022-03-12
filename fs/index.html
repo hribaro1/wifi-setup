@@ -235,20 +235,17 @@
 	         }
 		function onOffBoost(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
-			var arg, vred, ;
+			var arg, vred;
 			if(button.value == "on"){
 				button.value="off";
 				vred=false;
-				arg = {app: {mode: {boost:vred}, pwm: {val: 0 }}};
-				rpc_call_post("Control", arg);	
 				
 			}	else if(button.value == "off"){
 				button.value="on";
 				vred=true;
-				arg = {app: {mode: {boost: vred}, pwm: {val: 4 }}};
-				rpc_call_post("Control", arg);	
-		                }
-	         }
+			}
+			arg = {app: {mode: {boost: vred}}};
+			rpc_call_post("Control", arg);	
 
 		
 //SLIDER ZA HITROST
