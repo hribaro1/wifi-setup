@@ -287,13 +287,14 @@ output.innerHTML = slider.value;
 					auto.value = "on";
 				}
 				if(argget.msummer==false){
-					poletni.value = "on";
-				}else{
 					poletni.value = "off";
+				}else{
+					poletni.value = "on";
 				}   
 				output.value=argget.val;
 				slider.value=argget.val;	  	
 				output.innerHTML = slider.value;
+				slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
 			}
 		   }
 
