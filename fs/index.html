@@ -146,7 +146,7 @@
 	</style>
 </head>
 
-<body>
+<body onload="inicializacija()">
 	
 				<div id="topBar"><a href="wifi.html" id="wifi" class="left"><img src="wifi.png" id="wifiImage"></a><a href="index.html"><img src="logo.png" id="logo" class="center"></a>
 			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
@@ -239,7 +239,6 @@
 			if(button.value == "on"){
 				button.value="off";
 				vred=false;
-				
 			}	else if(button.value == "off"){
 				button.value="on";
 				vred=true;
@@ -281,6 +280,27 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
         	        Http.send();
 	 		Http.onreadystatechange = (e) => {
 		  		argget=JSON.parse(Http.responseText);  
+				if(argget.mnight==false){
+					nocni.value = false;
+				}else{
+					nocni.value = true;
+				}
+				if(argget.mboost==false){
+					boost.value = false;
+				}else{
+					boost.value = true;
+				}   
+				if(argget.mavto==false){
+					auto.value = false;
+				}else{
+					auto.value = true;
+				}
+				if(argget.msummer==false){
+					msummer.value = false;
+				}else{
+					msummer.value = true;
+				}   
+				slider.value=argget.val;
 			}
 		   }
 
