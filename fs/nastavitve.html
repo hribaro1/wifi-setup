@@ -242,6 +242,8 @@ input:checked + .slider:before {
 		function inicializacija() {
                                    
 //			argget=JSON.parse(rpc_call_get("Status"));
+			rpc_call_get("Status");
+			
 			if(argget.night==false){
 				nocniNacin.checked = false;
 			}else{
