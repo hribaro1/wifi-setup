@@ -291,7 +291,7 @@ slider.oninput = function sliderInput(value) {
   slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
 	
 	//shrani vrednost v parametre
-	var arg = {app: {pwm: {val: sliderValue/25}}, {old: {speed: this.value}}};
+	var arg = {app: {pwm: {val: sliderValue/25}, old: {speed: this.value}}};
 	rpc_call_post("Control", arg);	
 }
 
