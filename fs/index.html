@@ -265,7 +265,7 @@ output.innerHTML = slider.value;
 	
 		function inicializacija() {
 			var Http = new XMLHttpRequest();
-        	        var url="/rpc/Status";
+        	        var url="/rpc/StatusModes";
                 	Http.open("GET", url);
         	        Http.send();
 	 		Http.onreadystatechange = (e) => {
