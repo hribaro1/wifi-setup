@@ -235,17 +235,17 @@
 	         }
 		function onOffBoost(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
-			var arg, vred;
+			var arg, vred, ;
 			if(button.value == "on"){
 				button.value="off";
 				vred=false;
-				arg = {app: {mode: {boost: vred}}, {pwm: {val: 0 }}};
+				arg = {app: {mode: {boost:vred}, pwm: {val: 0 }}};
 				rpc_call_post("Control", arg);	
 				
 			}	else if(button.value == "off"){
 				button.value="on";
 				vred=true;
-				arg = {app: {mode: {boost: vred}}, {pwm: {val: 4 }}};
+				arg = {app: {mode: {boost: vred}, pwm: {val: 4 }}};
 				rpc_call_post("Control", arg);	
 		                }
 	         }
@@ -266,8 +266,6 @@ output.innerHTML = slider.value;
 //INCIALIZACIJA ZAČETNIH VREDNOSTI, JE TREBA ZAGNAT KO SE NALOŽI STRAN document.onLoad()
 function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 
-	
-	
 	var sliderValue=this.hitrost*25;
 	output.innerHTML = this.hitrost;
 	slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
@@ -276,10 +274,26 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 	poletni.value=this.poletni;
 	boost.value=this.boost;
 	
-	
-	
-	
-}
+}		
+		function inicializacija() {
+			var Http = new XMLHttpRequest();
+        	        var url="/rpc/Status";
+                	Http.open("GET", url);
+        	        Http.send();
+	 		Http.onreadystatechange = (e) => {
+		  		argget=JSON.parse(Http.responseText);
+				if(argget.night==false){
+					nocniNacin.checked = false;
+				}else{
+					nocniNacin.checked = true;
+				}
+				if(argget.gra==false){
+					kategorija.checked = false;
+				}else{
+					kategorija.checked = true;
+				}        
+			}
+		   }
 
 //Se zažene ob vsaki spremembi sliderja
 slider.oninput = function sliderInput(value) {
