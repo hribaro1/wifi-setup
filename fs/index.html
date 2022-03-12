@@ -183,10 +183,16 @@
 
 // rpc funkcija, ki omogoča rpc klice
 
+	function rpc_call_post(method, arg) {
+		var Http = new XMLHttpRequest();
+                var url="/rpc/"+method;
+                Http.open("POST", url);
+		Http.setRequestHeader("Content-Type", "application/json");
+                Http.send(JSON.stringify(arg));
+	}
 
 
-
-			function onOff(button){
+		function onOff(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
 			if(button.value == "on"){
 				button.value="off";
@@ -208,10 +214,7 @@
 			}else if (button.id = "boost"){
 				//boost način funkcija
 				console.log("boost  was changed to: " + button.value);
-			}
-
-				
-			
+			}	
 	}
 
 //SLIDER ZA HITROST
@@ -240,9 +243,14 @@ function incializacijaCP(hitrost, nocni, auto, poletni, boost){
 slider.oninput = function sliderInput(value) {
   output.innerHTML = this.value;
 	var sliderValue=this.value*25;
-//RUN FUNCTION Z PARAMETROM this.value ki v funkcijo pripelje INT hitrost
+   //RUN FUNCTION Z PARAMETROM this.value ki v funkcijo pripelje INT hitrost
   slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
+	
+	//shrani vrednost v parametre
+	var arg = {app: {pwm: {val: sliderValue/25}}};
+	rpc_call_post("Control", arg);	
 }
-	</script>
+
+</script>
 </body>
 </html>
