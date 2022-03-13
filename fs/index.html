@@ -202,7 +202,7 @@
 				vred=true;
 			}
 			arg = {app: {mode: {night: vred}}};
-			rpc_call_post("Control", arg);	
+			rpc_call_post("ControlNocni", arg);	
 	         }
 
 		function onOffAuto(button){
@@ -217,7 +217,7 @@
 				vred=true;
 			}
 			arg = {app: {mode: {avto: vred}}};
-			rpc_call_post("Control", arg);	
+			rpc_call_post("ControlAuto", arg);	
 	         }
 		function onOffPoletni(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
@@ -231,7 +231,7 @@
 				vred=true;
 			}
 			arg = {app: {mode: {summer: vred}}};
-			rpc_call_post("Control", arg);	
+			rpc_call_post("ControlSummer", arg);	
 	         }
 		function onOffBoost(button){
 			//CHANGE BUTTON DESIGN and VALUE ON/OFF
@@ -244,7 +244,7 @@
 				vred=true;
 			}
 			arg = {app: {mode: {boost: vred}}};
-			rpc_call_post("Control", arg);	
+			rpc_call_post("ControlBoost", arg);	
 		}
 
 		
