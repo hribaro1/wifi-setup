@@ -244,8 +244,12 @@
 				vred=true;
 			}
 			arg = {app: {mode: {boost: vred}}};
-			rpc_call_post("ControlBoost", arg);	
+			rpc_call_post("ControlBoost", arg);
+			setTimeout(function(){
 			window.location.reload();
+			}, 2000); 
+			
+			
 		}
 
 		
