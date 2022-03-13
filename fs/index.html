@@ -307,7 +307,7 @@ slider.oninput = function sliderInput(value) {
 	
 	//shrani vrednost v parametre
 	var arg = {app: {pwm: {val: sliderValue/25}}};
-	rpc_call_post("Control", arg);	
+	rpc_call_post("ControlSpeed", arg);	
 }
 
 </script>
