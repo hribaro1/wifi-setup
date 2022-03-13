@@ -203,6 +203,11 @@
 			}
 			arg = {app: {mode: {night: vred}}};
 			rpc_call_post("ControlNight", arg);	
+			setTimeout(function(){
+			window.location.reload();
+			}, 1000); 
+			
+			
 	         }
 
 		function onOffAuto(button){
