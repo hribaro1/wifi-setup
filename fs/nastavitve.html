@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head onload="incializacija()">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>B/air</title>
@@ -25,7 +25,7 @@
 		//se zažene da se izpolni začetne vrednosti	
 
 		function inicializacija() {
-                 
+                         alert("Alert from window_onload");
 //			argget=JSON.parse(rpc_call_get("Status"));
 			var Http = new XMLHttpRequest();
         	        var url="/rpc/Status";
@@ -60,7 +60,7 @@
 
 			}
 		//zazene incializacijo ko se odpre okno
-		// window.onload = inicializacija();
+		 window.onload = inicializacija();
 	</script>
 <style>
 	body {
