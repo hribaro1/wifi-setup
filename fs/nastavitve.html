@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>B/air</title>
+<script>
+			var nocniNacin = document.getElementById("nocniNacin");
+			var kategorija = document.getElementById("kategorija");
+			var nocniNacinValue = document.getElementById("nocniNacinValue");
+			var kategorijaValue = document.getElementById("kategorijaValue");
+                        var argget;		
+		
+	// rpc funckija, ki omogoča klice 
+
+	function rpc_call_post(method, arg) {
+		var Http = new XMLHttpRequest();
+                var url="/rpc/"+method;
+                Http.open("POST", url);
+		Http.setRequestHeader("Content-Type", "application/json");
+                Http.send(JSON.stringify(arg));
+	}		
+		
+		
+		//se zažene da se izpolni začetne vrednosti	
+
+		function inicializacija() {
+                 
+//			argget=JSON.parse(rpc_call_get("Status"));
+			var Http = new XMLHttpRequest();
+        	        var url="/rpc/Status";
+                	Http.open("GET", url);
+        	        Http.send();
+	 		Http.onreadystatechange = (e) => {
+		  		argget=JSON.parse(Http.responseText);
+				if(argget.night==false){
+					nocniNacin.checked = false;
+				}else{
+					nocniNacin.checked = true;
+				}
+				if(argget.gra==false){
+					kategorija.checked = false;
+				}else{
+					kategorija.checked = true;
+				}        
+			}
+		   }
+			
+			nocniNacin.onclick = function nocniNacinSet(){
+				nocniNacinValue.innerHTML = nocniNacin.checked ? "ON":"OFF";
+			}
+			kategorija.onclick = function kategorijaSet(){
+				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
+			}
+			
+			function save(){
+			        var arg = {app: {pwm: {night: nocniNacin.checked, gra: kategorija.checked}}};
+			        rpc_call_post("ControlParam", arg);
+				window.location.href = "index.html";
+
+			}
+		//zazene incializacijo ko se odpre okno
+		window.onload = inicializacija;
+	</script>
+<style>
+	body {
+    	text-align: center;
+    	font-family: verdana;
+    	background-color: #EEEEEE;
+    	color: black;
+        }
+	
+		a{
+			color: #56A0CE;
+			font-size: 32px;
+			padding: 0px;
+			text-decoration: none; 
+		}
+			
+		.slidecontainer{
+			width: 100%;
+			text-align: center;
+			padding: 50px 0;
+
+		}
+
+	
+		.screen{
+			position:fixed; 
+			top:0;
+    		left:0;
+    		right:0; 
+    		bottom:0; 
+    		width:auto; 
+    		height:400px; 
+    		margin:auto;
+		}
+
+		#logo{
+			text-align: center;
+			height: 35px;
+			width:auto;
+			padding-left: 18px;
+			
+		}
+
+	#topBar{
+		width: 320px;
+		height: 50px;
+		display: inline-block;
+		margin-top: 20px;
+		
+	}
+	#settingsImage{
+		width:30px;
+		height: auto;
+	}
+	#wifiImage{
+		width:30px;
+		height: auto;
+	}
+	#info{
+		font-size: 25px;
+		font-weight: 600;
+	}
+	.center{
+		display: inline-block;
+		float: center;
+		vertical-align: middle;
+	}
+	.right{
+		display: inline-block;
+		float: right;
+	}
+	.left{
+		display: inline-block;
+		float: left;
+	}
+	
+	
+	.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+		
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888888;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+	
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+	
+}
+
+.slider.round:before {
+  border-radius: 50%;
+	color: white;
+}
+
+	.vrstica{
+	width:100%;
+	height: 30px;
+	color: black;
+	font-size: 24px;
+	padding: 20px 0px;
+	}
+	
+	input {
+	margin-top:10px;
+	border: 0;
+    border-radius: 0.3em;
+    color: #FFFFFF;
+	line-height: 2.4em;
+    font-size: 1.2em;
+    width: 100%;
+    display: block;
+	background: #56A0CE;
+    }
+	
+		button {
+            border: 0;
+            border-radius: 0.3em;
+            color: #FFFFFF;
+            line-height: 2.4em;
+            font-size: 1.2em;
+            width: 100%;
+            display: block;
+			background: #56A0CE;
+    }
+	
+
+	</style>
+</head>
+
+<body>
+		
+
+	
+    <div style='display:inline-block;width:320px;padding:5px'>
+     
+				<div id="topBar"><a href="wifi.html" id="wifi" class="left"><img src="wifi.png" id="wifiImage"></a><a href="index.html"><img src="logo.png" id="logo" class="center"></a>
+			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
+
+	
+	
+<div class="slidecontainer">
+	<p id="info">NASTAVITVE MODULA</p>
+	<div class="vrstica"><label class="left">NOČNI NAČIN: </label><label id="nocniNacinValue">ON</label><label class="switch right">
+  <input type="checkbox" id="nocniNacin" checked>
+  <span class="slider round"></span>
+</label></div>
+	
+		<div class="vrstica"><label class="left">KATEGORIJA: </label><label id="kategorijaValue">A</label><label class="switch right">
+  <input type="checkbox" id="kategorija" checked>
+  <span class="slider round" onClick=""></span>
+</label></div>
+		   <br>
+	           <br>	
+		   <br>
+	<button id="save" onclick="save()"><span id="saves">&#x1F4BE;</span> Shrani</button>  
+		</div>
+    </div>
+</body>
+</html>

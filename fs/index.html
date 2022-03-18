@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta http-equiv="refresh" content="10" />
+<title>B/air</title>
+<script>
+// rpc funkcija, ki omogoča rpc klice
+	function rpc_call_post(method, arg) {
+		var Http = new XMLHttpRequest();
+                var url="/rpc/"+method;
+                Http.open("POST", url);
+		Http.setRequestHeader("Content-Type", "application/json");
+                Http.send(JSON.stringify(arg));
+	}
+		function onOffNocni(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {night: vred}}};
+			rpc_call_post("ControlNight", arg);	
+			setTimeout(function(){
+			window.location.reload();
+			}, 1000); 
+	    }
+
+		function onOffAuto(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {avto: vred}}};
+			rpc_call_post("ControlAuto", arg);	
+	    }
+	
+		function onOffPoletni(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+				
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {summer: vred}}};
+			rpc_call_post("ControlSummer", arg);	
+	    }
+	
+		function onOffBoost(button){
+			//CHANGE BUTTON DESIGN and VALUE ON/OFF
+			var arg, vred;
+			if(button.value == "on"){
+				button.value="off";
+				vred=false;
+			}	else if(button.value == "off"){
+				button.value="on";
+				vred=true;
+			}
+			arg = {app: {mode: {boost: vred}}};
+			rpc_call_post("ControlBoost", arg);
+			setTimeout(function(){
+			window.location.reload();
+			}, 1000); 
+		}
+
+		
+//SLIDER ZA HITROST
+var argget
+var slider = document.getElementById("hitrost");
+var output = document.getElementById("vrednost");
+var nocni = document.getElementById("nocni");
+var auto = document.getElementById("auto");
+var poletni = document.getElementById("poletni");
+var boost = document.getElementById("boost");
+var sliderValue = slider.value*25;
+
+output.innerHTML = slider.value;
+		
+
+//INCIALIZACIJA ZAČETNIH VREDNOSTI, JE TREBA ZAGNAT KO SE NALOŽI STRAN document.onLoad()
+	
+		function inicializacija() {
+			var Http = new XMLHttpRequest();
+        	        var url="/rpc/StatusModes";
+                	Http.open("GET", url);
+        	        Http.send();
+	 		Http.onreadystatechange = (e) => {
+				console.log(Http.responseText);
+		  		argget=JSON.parse(Http.responseText);  
+				if(argget.mnight==false){
+					nocni.value = "off";
+				}else{
+					nocni.value = "on";
+				}
+				if(argget.mboost==false){
+					boost.value = "off";
+				}else{
+					boost.value = "on";
+				}   
+				if(argget.mavto==false){
+					auto.value = "off";
+				}else{
+					auto.value = "on";
+				}
+				if(argget.msummer==false){
+					poletni.value = "off";
+				}else{
+					poletni.value = "on";
+				}   
+				output.value=argget.val;
+				slider.value=argget.val;	  	
+				output.innerHTML = slider.value;
+				slider.style.background ='linear-gradient(90deg, #56A0CE ' +argget.val*25 +'%, #CDCDCD ' +argget.val*25 +'%)';
+			}
+		   }
+
+//Se zažene ob vsaki spremembi sliderja
+slider.oninput = function sliderInput(value) {
+  output.innerHTML = this.value;
+	var sliderValue=this.value*25;
+   //RUN FUNCTION Z PARAMETROM this.value ki v funkcijo pripelje INT hitrost
+  slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
+	
+	//shrani vrednost v parametre
+	var arg = {app: {pwm: {val: sliderValue/25}}};
+	rpc_call_post("ControlSpeed", arg);	
+}
+
+	window.onload = inicializacija;
+</script>
+<style>
+	body {
+    	text-align: center;
+    	font-family: verdana;
+    	background-color: #EEEEEE;
+    	color: black;
+        }
+	
+        button {
+       		
+            border-radius: 100%;
+            color: #FFFFFF;
+            line-height: 74px;
+            font-size: 18px;
+            width: 23%;
+            display: inline-block;
+			border-style: solid;
+			border-color: #CDCDCD;
+			border-width: 0px;
+			margin-left: 0px;
+        }
+		
+		button[value="off"]{
+			background: #EEEEEE;
+			color: #888888;
+			box-shadow: 0px 3px 6px 1px #888888;
+		}
+		 
+		button[value="on"]{
+			background: #CDCDCD;
+			color: #56A0CE;
+			box-shadow: 0px 0px 0px 0px #888888;
+			
+		}
+	
+		a{
+			color: #56A0CE;
+			font-size: 32px;
+			padding: 0px;
+			text-decoration: none; 
+		}
+			
+		.slidecontainer{
+			width: 100%;
+			text-align: center;
+			padding: 50px 0;
+
+		}
+		
+		.slider {
+  			-webkit-appearance: none;
+  			width: 100%;
+  			height: 10px;
+  			border-radius: 10px;
+			background: linear-gradient(90deg, #56A0CE 50%, #CDCDCD 50%);
+  			outline: none;
+  			opacity: 0.7;
+  			-webkit-transition: .2s;
+  			transition: opacity .2s;
+		}
+
+		.slider:hover {
+		  opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: white;
+			cursor: pointer;
+		}
+
+		.slider::-moz-range-thumb {
+		  width: 30px;
+		  height: 30px;
+		  border-radius: 50%;
+		  background: white;
+		  cursor: pointer;
+		}
+	
+		.screen{
+			position:fixed; 
+			top:0;
+    		left:0;
+    		right:0; 
+    		bottom:0; 
+    		width:auto; 
+    		height:400px; /****set height****/
+    		margin:auto;
+		}
+
+		
+
+		#vrednost{
+			color: #56A0CE;
+			font-size: 4em;
+			
+		}
+		#logo{
+			text-align: center;
+			height: 35px;
+			width:auto;
+			padding-left: 18px;
+			
+		}
+
+	#topBar{
+		width: 320px;
+		height: 50px;
+		display: inline-block;
+		margin-top: 20px;
+		
+	}
+	#settingsImage{
+		width:30px;
+		height: auto;
+	}
+	#wifiImage{
+		width:30px;
+		height: auto;
+	}
+	.center{
+		display: inline-block;
+		float: center;
+		vertical-align: middle;
+	}
+	.right{
+		display: inline-block;
+		float: right;
+	}
+	.left{
+		display: inline-block;
+		float: left;
+	}
+		
+
+	</style>
+</head>
+
+<body>
+	
+				<div id="topBar"><a href="wifi.html" id="wifi" class="left"><img src="wifi.png" id="wifiImage"></a><a href="index.html"><img src="logo.png" id="logo" class="center"></a>
+			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
+
+	<div style="display:inline-block;width:320px;padding:5px;" class="screen">
+
+		
+		<div class="slidecontainer">
+				<span id="vrednost">2</span>
+		  <p>HITROST </p>
+		  <input type="range" min="0" max="4" value="2"  class="slider" id="hitrost">
+		
+		</div>
+        <br>
+		<div id="buttons">
+        	<button id="nocni" title="Nočni način" value="off"
+        	    onclick="onOffNocni(this)"><span id="inocni">nočni</span> 
+        	</button>
+			        <button id="auto" title="Senzorski način" value="off"
+        	    onclick="onOffAuto(this)"><span id="iauto">auto</span> 
+        	</button>
+			        <button id="poletni" title="Poletni način" value="off"
+        	    onclick="onOffPoletni(this)"><span id="ipoletni">poletni</span> 
+        	</button>
+			        <button id="boost" title="Boost način" value="off"
+        	    onclick="onOffBoost(this)"><span id="iboost">boost</span> 
+        	</button>
+		</div>
+    </div>
+</body>
+</html>
