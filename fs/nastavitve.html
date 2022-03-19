@@ -195,12 +195,12 @@ input:checked + .slider:before {
 	
 <div class="slidecontainer">
 	<p id="info">NASTAVITVE MODULA</p>
-	        <div class="vrstica"><label class="left">NOČNI NAČIN:  </label><label id="nocniNacinValue">ON</label><label class="switch right">
+	        <div class="vrstica"><label class="left">NOČNI NAČIN:      </label><label id="nocniNacinValue">ON</label><label class="switch right">
   <input type="checkbox" id="nocniNacin" checked>
   <span class="slider round"></span>
 </label></div>
 	
-		<div class="vrstica"><label class="left">KATEGORIJA:   </label><label id="kategorijaValue">A</label><label class="switch right">
+		<div class="vrstica"><label class="left">KATEGORIJA:       </label><label id="kategorijaValue">A</label><label class="switch right">
   <input type="checkbox" id="kategorija" checked>
   <span class="slider round" onClick=""></span>
 </label></div>
@@ -242,18 +242,24 @@ input:checked + .slider:before {
 		  		argget=JSON.parse(Http.responseText);
 				if(argget.night==false){
 					nocniNacin.checked = false;
+					nocniNacinValue.innerHTML = "OFF"
 				}else{
 					nocniNacin.checked = true;
+					nocniNacinValue.innerHTML = "ON"
 				}
 				if(argget.gra==false){
 					kategorija.checked = false;
+					kategorijaValue.innerHTML = "B"
 				}else{
 					kategorija.checked = true;
+					kategorijaValue.innerHTML = "A"
 				}        
 				if(argget.maxnight==false){
 					maxNocna.checked = false;
+					maxNocnaValue.innerHTML = "1"
 				}else{
 					maxNocna.checked = true;
+					maxNocnaValue.innerHTML = "2"
 				}        				
 			}
 		   }
