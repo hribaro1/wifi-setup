@@ -205,6 +205,12 @@ input:checked + .slider:before {
   <span class="slider round" onClick=""></span>
 </label></div>
 	
+	
+		<div class="vrstica"><label class="left">NOČNA hitrost: </label><label id="maxNocnaValue">2</label><label class="switch right">
+  <input type="checkbox" id="maxNocna" checked>
+  <span class="slider round" onClick=""></span>
+</label></div>
+	
 		   <br>
 	           <br>	
 		   <br>
@@ -215,8 +221,10 @@ input:checked + .slider:before {
 <script>
 			var nocniNacin = document.getElementById("nocniNacin");
 			var kategorija = document.getElementById("kategorija");
+			var maxNocna = document.getElementById("maxNocna");
 			var nocniNacinValue = document.getElementById("nocniNacinValue");
 			var kategorijaValue = document.getElementById("kategorijaValue");
+			var maxNocnaValue = document.getElementById("maxNocnaValue");
                         var argget;		
 		
 	// rpc funckija, ki omogoča klice 
@@ -242,6 +250,11 @@ input:checked + .slider:before {
 				}else{
 					kategorija.checked = true;
 				}        
+				if(argget.maxnight==false){
+					maxNocna.checked = false;
+				}else{
+					maxNocna.checked = true;
+				}        				
 			}
 		   }
 			
@@ -251,7 +264,10 @@ input:checked + .slider:before {
 			kategorija.onclick = function kategorijaSet(){
 				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
 			}
-			
+			maxNocna.onclick = function maxNocnaSet(){
+				maxNocnaValue.innerHTML = maxNocna.checked ? "2":"1";
+			}
+						
 		
 	
 	
