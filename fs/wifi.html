@@ -150,7 +150,7 @@
                 window.location.href = "save.html";
             }, { config, save: true, reboot: true });		
         };
-	     
+/*
 	function save_rpc1() {
             let bs = g('saveap');
             let old = bs.style.background;
@@ -168,25 +168,7 @@
             }, { config, save: true, reboot: true });
         };
 
-	    
-        function reset_rpc() {
-            let bs = g('reset');
-            let old = bs.style.background;
-            bs.disabled = true;
-            bs.style.background = '#4698CB';
-            let bss = g('resets');
-            bss[S]("class", "spin");
-            wl[H] = "Resetting STA, enabling AP...";
-            
-	    var sta = { enable: false, ssid: "", pass: "" }
-            var config = { wifi: {sta: sta, ap: { enable: true } } };
-
-            rpc_call("Config.Set", function (resp) {
-                wl[H] = "Settings changed";
-                window.location.href = "save.html";
-            }, { config, save: true, reboot: true });
-        };
-
+*/	    
 	    
 	    
         document.addEventListener('readystatechange', () => {
