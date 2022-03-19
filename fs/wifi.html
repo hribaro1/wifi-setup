@@ -303,7 +303,10 @@
 		display: inline-block;
 		float: left;
 	}
-		
+
+	.checkbox input[type="checkbox"] {
+ 	   opacity: 0;
+	}
 
 
         .spin {
@@ -359,7 +362,7 @@
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
         <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked>
-        <label for="bssid" id="b">Izberi SSID za WiFi povezavo</label>
+        <label for="bssid" id="b"></label>
         <button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani, NE izklopi-AP
         </button>
         <br>
