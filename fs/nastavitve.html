@@ -46,8 +46,7 @@
 				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
 			}
 			
-			
-			window.onload = inicializacija();
+		
 	
 	
 	function rpc_call_post(method, arg) {
@@ -65,8 +64,9 @@
 		rpc_call_post("ControlParam", arg);
 		window.location.href = "index.html";
 
-	}	
-	   document.addEventListener('readystatechange', () => {
+	}
+	
+	document.addEventListener('readystatechange', () => {
             if (document.readyState == 'complete') {
 		 alert("document ready")
 		    inicializacija();
