@@ -16,8 +16,8 @@
        		
             border-radius: 100%;
             color: #FFFFFF;
-            line-height: 3.6em;
-            font-size: 1.2em;
+            line-height: 74px;
+            font-size: 18px;
             width: 23%;
             display: inline-block;
 			border-style: solid;
@@ -146,7 +146,7 @@
 	</style>
 </head>
 
-<body onload="inicializacija()">
+<body>
 	
 				<div id="topBar"><a href="wifi.html" id="wifi" class="left"><img src="wifi.png" id="wifiImage"></a><a href="index.html"><img src="logo.png" id="logo" class="center"></a>
 			<a href="nastavitve.html" id="nastavitve" class="right"><img src="settings.png" id="settingsImage"></a></div>
@@ -320,6 +320,10 @@ slider.oninput = function sliderInput(value) {
 	rpc_call_post("ControlSpeed", arg);	
 }
 
+		
+		window.onload="inicializacija()"
+		
+		
 </script>
 </body>
 </html>
