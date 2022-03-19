@@ -118,8 +118,8 @@
                 resp.forEach(function (e) {
                     var d = E('div'), i = E('a'), c = E('a');
                     i[S]('class', 's'); c[S]('class', 'q');
-                    i.onclick = function () { g('b').innerText = e.bssid; g('s').value = e.ssid; g('p').focus(); };
-                    //i.onclick = function () { g('s').value = e.ssid; g('p').focus(); };
+                   // i.onclick = function () { g('b').innerText = e.bssid; g('s').value = e.ssid; g('p').focus(); };
+                    i.onclick = function () { g('s').value = e.ssid; g('p').focus(); };
 		    c.title = e.bssid;
                     i[A](document.createTextNode(e.ssid));
                     c[H] = R(parseInt(e.rssi)) + '% ' + String.fromCodePoint((parseInt(e.auth_mode) == 0) ? 0x26A0 : 0x1F510);
@@ -137,9 +137,12 @@
             bss[S]("class", "spin");
             wl[H] = "Shranjevanje...";
 
-            var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
-            var config = { wifi: { sta: sta, ap: { enable: true } } };
+       //     var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
+        //    var config = { wifi: { sta: sta, ap: { enable: true } } };
 
+	    var sta = { enable: true, ssid: g('s').value, pass: g('p').value };  // odstranu spremembe bssid
+            var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked } } };  // uporabu checkbox za AP True/False
+		
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
                 bs.style.background = old;
@@ -341,7 +344,7 @@
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
         <input style="width:auto; float:right;" type="checkbox" id="bssid" unchecked>
-        <label for="bssid" id="b">Ohrani dostopno točko vidno</label>
+        <label for="bssid" id="b">Ohrani dostopno to&#269;ko vidno</label>
         <br>
 	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani, NE izklopi-AP
         </button>
