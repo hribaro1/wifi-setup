@@ -54,10 +54,10 @@
             let old2 = b2.style.background;
             b2.disabled = true;
             b2.style.background = '#4698CB';
-            let b3 = g('reset');
-            let old3 = b3.style.background;
-            b3.disabled = true;
-            b3.style.background = '#4698CB';
+       //     let b3 = g('reset');
+       //     let old3 = b3.style.background;
+       //     b3.disabled = true;
+       //     b3.style.background = '#4698CB';
             let si = g('s'); si.disabled = true;
             let pi = g('p'); pi.disabled = true;
 
@@ -81,8 +81,8 @@
                 b2.disabled = false;
                 b2.style.background = old2;
 		// Not for captive
-                b3.disabled = false;
-                b3.style.background = old3;
+         //       b3.disabled = false;
+         //       b3.style.background = old3;
                 si.disabled = false;
                 pi.disabled = false;
                 scan_rpc();
@@ -366,12 +366,7 @@
         <br>
 	<br>
         <br>
-        <button id="reset" title="Reset network settings"
-            onclick="p('Reset settings and reboot in AP mode?', reset_rpc)"><span id="resets">&#x1F198;</span> Reset
-        </button>
-        <br>
-        <a href="/">Back</a>
-        <br>
+
 
         <br>
     </div>
