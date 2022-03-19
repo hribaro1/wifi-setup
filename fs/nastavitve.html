@@ -272,11 +272,8 @@ input:checked + .slider:before {
 
 	}
 	
-	document.onreadystatechange = function () {
-    		if (document.readyState == "loading") {
-        		inicializacija();
-    		}
-	}
+     	window.onload = inicializacija();
+	
 </script>
 	
 	
