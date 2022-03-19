@@ -66,12 +66,9 @@
 
 	}
 	
-	document.addEventListener('readystatechange', () => {
-            if (document.readyState == 'complete') {
-		 alert("document ready")
-		    inicializacija();
-	    };
-        });
+	document.addEventListener('DOMCOntentLoaded', () => {
+               inicializacija();
+	});
 	
 </script>
 	
