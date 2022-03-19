@@ -291,10 +291,10 @@ input:checked + .slider:before {
 		var arg = {app: 
 			   	{pwm: 
 				 	{night: nocniNacin.checked, gra: kategorija.checked}
-				}, 
-			   	{night: 
-			   		{speed: speedmax}
-				}
+				} 
+			   //	{night: 
+			   //		{speed: speedmax}
+			//	}
 			  };
 		rpc_call_post("ControlParam", arg);
 		window.location.href = "index.html";
