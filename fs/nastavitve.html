@@ -282,12 +282,18 @@ input:checked + .slider:before {
 	
 	
 	function save(){
+		var speedmax;
+		if (maxNocna.checked){
+		    speedmax=2;
+		} else {
+		    speedmax=1;
+		}
 		var arg = {app: 
 			   	{pwm: 
 				 	{night: nocniNacin.checked, gra: kategorija.checked}
 				}, 
 			   	{night: 
-			   		{speed: maxNocna.checked}
+			   		{speed: speedmax}
 				}
 			  };
 		rpc_call_post("ControlParam", arg);
