@@ -118,8 +118,8 @@
                 resp.forEach(function (e) {
                     var d = E('div'), i = E('a'), c = E('a');
                     i[S]('class', 's'); c[S]('class', 'q');
-                    //i.onclick = function () { g('b').innerText = e.bssid; g('s').value = e.ssid; g('p').focus(); };
-                    i.onclick = function () { g('s').value = e.ssid; g('p').focus(); };
+                    i.onclick = function () { g('b').innerText = e.bssid; g('s').value = e.ssid; g('p').focus(); };
+                    //i.onclick = function () { g('s').value = e.ssid; g('p').focus(); };
 		    c.title = e.bssid;
                     i[A](document.createTextNode(e.ssid));
                     c[H] = R(parseInt(e.rssi)) + '% ' + String.fromCodePoint((parseInt(e.auth_mode) == 0) ? 0x26A0 : 0x1F510);
