@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta http-equiv="refresh" content="10" />
 
 <title>B/air</title>			
 
@@ -195,18 +196,18 @@ input:checked + .slider:before {
 	
 <div class="slidecontainer">
 	<p id="info">NASTAVITVE MODULA</p>
-	        <div class="vrstica"><label class="left">NOČNI NAČIN:</label><label id="nocniNacinValue">  ON</label><label class="switch right">
+	        <div class="vrstica"><label class="left">NOČNI NAČIN DEL.:</label><label id="nocniNacinValue">ON</label><label class="switch right">
   <input type="checkbox" id="nocniNacin" checked>
   <span class="slider round"></span>
 </label></div>
 	
-		<div class="vrstica"><label class="left">KATEGORIJA:</label><label id="kategorijaValue">  A</label><label class="switch right">
+		<div class="vrstica"><label class="left">KATEGORIJA VENT.:</label><label id="kategorijaValue">A</label><label class="switch right">
   <input type="checkbox" id="kategorija" checked>
   <span class="slider round" onClick=""></span>
 </label></div>
 	
 	
-		<div class="vrstica"><label class="left">NOČNA HITR.MAX:</label><label id="maxNocnaValue">2</label><label class="switch right">
+		<div class="vrstica"><label class="left">NOČNA MAX.HIT.:</label><label id="maxNocnaValue">2</label><label class="switch right">
   <input type="checkbox" id="maxNocna" checked>
   <span class="slider round" onClick=""></span>
 </label></div>
@@ -242,17 +243,17 @@ input:checked + .slider:before {
 		  		argget=JSON.parse(Http.responseText);
 				if(argget.night==false){
 					nocniNacin.checked = false;
-					nocniNacinValue.innerHTML = "  OFF"
+					nocniNacinValue.innerHTML = "OFF"
 				}else{
 					nocniNacin.checked = true;
-					nocniNacinValue.innerHTML = "  ON"
+					nocniNacinValue.innerHTML = "ON"
 				}
 				if(argget.gra==false){
 					kategorija.checked = false;
-					kategorijaValue.innerHTML = "  B"
+					kategorijaValue.innerHTML = "B"
 				}else{
 					kategorija.checked = true;
-					kategorijaValue.innerHTML = "  A"
+					kategorijaValue.innerHTML = "A"
 				}        
 				if(argget.maxnight==false){
 					maxNocna.checked = false;
@@ -265,10 +266,10 @@ input:checked + .slider:before {
 		   }
 			
 			nocniNacin.onclick = function nocniNacinSet(){
-				nocniNacinValue.innerHTML = nocniNacin.checked ? "  ON":"  OFF";
+				nocniNacinValue.innerHTML = nocniNacin.checked ? "ON":"OFF";
 			}
 			kategorija.onclick = function kategorijaSet(){
-				kategorijaValue.innerHTML = kategorija.checked ? "  A":"  B";
+				kategorijaValue.innerHTML = kategorija.checked ? "A":"B";
 			}
 			maxNocna.onclick = function maxNocnaSet(){
 				maxNocnaValue.innerHTML = maxNocna.checked ? "2":"1";
