@@ -323,6 +323,53 @@ slider.oninput = function sliderInput(value) {
 }
 
 		
+	function refresh() {
+		var Http = new XMLHttpRequest();
+        	var url="/rpc/StatusModes";
+                Http.open("GET", url);
+        	Http.send();
+	 	Http.onreadystatechange = (e) => {
+			console.log(Http.responseText);
+			argget=JSON.parse(Http.responseText);  
+			if(argget.mnight==false){
+				if (nocni.value =="on") {
+				   window.location.reload()
+				}    
+			} else {
+				if (nocni.value =="off") {
+				   window.location.reload()
+				}
+			};
+			if(argget.mboost==false){
+				if (boost.value =="on") {
+				   window.location.reload()
+				}    
+			} else {
+				if (bost.value =="off") {
+				   window.location.reload()				
+				}
+			};
+			if(argget.mavto==false){
+				if (auto.value =="on") {
+				   window.location.reload()
+				}    
+			} else {
+				if (auto.value =="off") {
+				   window.location.reload()				
+				}
+			};
+			if(argget.msummer==false){
+				if (poletni.value =="on") {
+				   window.location.reload()
+				}    
+			} else {
+				if (poeltni.value =="off") {
+				   window.location.reload()				
+				}
+			}
+		}
+	}	
+	setInterval (refresh(), 10000);
 		
 		
 </script>
