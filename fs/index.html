@@ -204,12 +204,7 @@
 				vred=true;
 			}
 			arg = {app: {mode: {night: vred}}};
-			rpc_call_post("ControlNight", arg);	
-			setTimeout(function(){
-			window.location.reload();
-			}, 1000); 
-			
-			
+			rpc_call_post("ControlNight", arg);
 	         }
 
 		function onOffAuto(button){
@@ -313,6 +308,7 @@ output.innerHTML = slider.value;
 //Se zažene ob vsaki spremembi sliderja
 slider.oninput = function sliderInput(value) {
   output.innerHTML = this.value;
+  output.value = this.value;	
 	var sliderValue=this.value*25;
    //RUN FUNCTION Z PARAMETROM this.value ki v funkcijo pripelje INT hitrost
   slider.style.background ='linear-gradient(90deg, #56A0CE ' +sliderValue +'%, #CDCDCD ' +sliderValue +'%)';
