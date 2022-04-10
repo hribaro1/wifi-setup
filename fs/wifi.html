@@ -141,8 +141,12 @@
         //    var config = { wifi: { sta: sta, ap: { enable: true } } };
 
 	    var sta = { enable: true, ssid: g('s').value, pass: g('p').value };  // odstranu spremembe bssid
-            var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked, pass: g('w').value } } };  // uporabu checkbox za AP True/False
-		
+            if (g('passap').checked) {
+	      var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked, pass: g('w').value } } };  // uporabu checkbox za AP True/False
+	    } else {
+	      var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked } } };  // uporabu checkbox za AP True/False	    
+	    } 
+		    
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
                 bs.style.background = old;
@@ -347,8 +351,9 @@
         <input style="width:auto; float:right;" type="checkbox" id="bssid" checked>
         <label for="bssid" id="b">Ohrani dostopno to&#269;ko vidno</label>
         <br>
-	<input id="w" name="w" length=64 placeholder='geslo za AP'>
-        <label for="w" id="wl">Zamenjaj geslo za dostopno to&#269;ko</label>
+        <input style="width:auto; float:left;" type="checkbox" id="passap" unchecked>
+        <label for="passap" id="b">Zamenjaj geslo za dostopno to&#269;ko</label>
+	<input id="w" name="w" length=64 placeholder='novo geslo dostopna to&#269;ka'>
         <br>
 	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani
         </button>
