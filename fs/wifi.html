@@ -141,11 +141,7 @@
         //    var config = { wifi: { sta: sta, ap: { enable: true } } };
 
 	    var sta = { enable: true, ssid: g('s').value, pass: g('p').value };  // odstranu spremembe bssid
-            if (g('passap').checked) {
-	      var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked, pass: g('w').value } } };  // uporabu checkbox za AP True/False
-	    } else {
-	      var config = { wifi: { sta: sta, ap: { enable: g('bssid').checked } } };  // uporabu checkbox za AP True/False	    
-	    } 
+	    var config = { wifi: { sta: sta, ap: { enable: true } } };  // uporabu checkbox za AP True/False	
 		    
             rpc_call("Config.Set", function (resp) {
                 bs.disabled = false;
@@ -157,6 +153,36 @@
                 window.location.href = "save.html";
             }, { config, save: true, reboot: true });		
         };
+
+        function save_rpcap() {
+            let bs = g('saveap');
+            let old = bs.style.background;
+            bs.disabled = true;
+            bs.style.background = '#4698CB';
+            let bss = g('savesap');
+            bss[S]("class", "spin");
+            wl[H] = "Shranjevanje...";
+
+       //     var sta = { enable: true, ssid: g('s').value, pass: g('p').value, bssid: g('bssid').checked===true ? g('b').innerText : '' };
+        //    var config = { wifi: { sta: sta, ap: { enable: true } } };
+
+	//    var sta = { enable: true, ssid: g('s').value, pass: g('p').value };  // odstranu spremembe bssid
+            if (g('passap').checked) {
+	      var config = { wifi: { ap: { enable: g('bssid').checked, pass: g('w').value } } };  // uporabu checkbox za AP True/False
+	    } else {
+	      var config = { wifi: { ap: { enable: g('bssid').checked } } };  // uporabu checkbox za AP True/False	    
+	    } 
+		    
+            rpc_call("Config.Set", function (resp) {
+                bs.disabled = false;
+                bs.style.background = old;
+                bss[S]("class", "");
+                if(!resp)
+                    return;
+                wl[H] = "Konfiguracija shranjena";
+                window.location.href = "save.html";
+            }, { config, save: true, reboot: true });		
+        };	    
 /*
 	function save_rpc1() {
             let bs = g('saveap');
@@ -348,6 +374,9 @@
         <input id="p" name="p" length=64 type='password' placeholder='geslo'>
         <br>
 	<br>
+	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani WiFi
+        </button>
+	<br>
 	<br>
         <input style="float:right; width:auto;" type="checkbox" id="bssid" checked>
         <label for="bssid" id="b">Ohrani dostopno to&#269;ko vidno</label>
@@ -361,7 +390,7 @@
         <br>
 	<br>
 	<br>
-	<button id="save" onclick="save_rpc()"><span id="saves">&#x1F4BE;</span> Shrani
+	<button id="saveap" onclick="save_rpcap()"><span id="savesap">&#x1F4BE;</span> Shrani AP
         </button>
         <br>
 	<br>
