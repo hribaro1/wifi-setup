@@ -319,12 +319,12 @@ input:checked + .slider:before {
 	
 	
 	async function downloadUsingFetch() {
-          const image = await fetch("https://www.google.com");
+          const image = await fetch("https://github/hribaro1/app41/blob/main/");
           const imageBlog = await image.blob();
           const imageURL = URL.createObjectURL(imageBlog);
           const anchor = document.createElement("a");
           anchor.href = imageURL;
-          anchor.download = FILE_NAME;
+          anchor.download = fw.zip;
 
           document.body.appendChild(anchor);
           anchor.click();
