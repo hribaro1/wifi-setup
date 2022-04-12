@@ -319,7 +319,7 @@ input:checked + .slider:before {
 	
 	
 	async function downloadUsingFetch() {
-          const image = await fetch("https://github/hribaro1/app41/blob/main/fw.zip");
+          const image = await fetch("https://storage.cloud.google.com/b-air-6c15b-firmware/fw.zip");
           const imageBlog = await image.blob();
           const imageURL = URL.createObjectURL(imageBlog);
           const anchor = document.createElement("a");
