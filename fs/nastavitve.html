@@ -215,13 +215,7 @@ input:checked + .slider:before {
 	           <br>	
 		   <br>
 	<button id="save" onclick="save()"><span id="saves">&#x1F4BE;</span> Shrani</button>  
-	
-	<br>
-	           <br>	
-		   
-	
-	<a onclick="downloadUsingFetch()">Download fw.zip</a>
-	
+		
 		</div>
     </div>
 
@@ -317,20 +311,6 @@ input:checked + .slider:before {
 	
      	window.onload = inicializacija();
 	
-	
-	async function downloadUsingFetch() {
-          const image = await fetch("https://storage.cloud.google.com/b-air-6c15b-firmware/fw.zip");
-          const imageBlog = await image.blob();
-          const imageURL = URL.createObjectURL(imageBlog);
-          const anchor = document.createElement("a");
-          anchor.href = imageURL;
-          anchor.download = fw.zip;
-
-          document.body.appendChild(anchor);
-          anchor.click();
-          document.body.removeChild(anchor);
-	  URL.revokeObjectURL(imageURL);
-	}
 	
 </script>
 	
