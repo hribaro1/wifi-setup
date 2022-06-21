@@ -302,9 +302,9 @@ input:checked + .slider:before {
 			  
 		rpc_call_post("ControlParam", arg);
 		
-		arg = {app: {night: {speed: speedmax}}};
+		var arg1 = {app: {night: {speed: speedmax}}};
 		
-		rpc_call_post("ControlParam", arg);
+		rpc_call_post("ControlParam1", arg1);
 		window.location.href = "index.html";
 
 	}
