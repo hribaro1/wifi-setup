@@ -211,6 +211,12 @@ input:checked + .slider:before {
   <span class="slider round" onClick=""></span>
 </label></div>
 	
+	
+		<div class="vrstica"><label class="left">MASTER MODUL:</label><label id="masterValue">N</label><label class="switch right">
+  <input type="checkbox" id="master" checked>
+  <span class="slider round" onClick=""></span>
+</label></div>
+	
 		   <br>
 	           <br>	
 		   <br>
@@ -226,6 +232,7 @@ input:checked + .slider:before {
 			var nocniNacinValue = document.getElementById("nocniNacinValue");
 			var kategorijaValue = document.getElementById("kategorijaValue");
 			var maxNocnaValue = document.getElementById("maxNocnaValue");
+			var masterValue = document.getElementById("masterValue");
                         var argget;		
 		
 	// rpc funckija, ki omogoča klice 
@@ -241,6 +248,7 @@ input:checked + .slider:before {
         	        Http.send();
 	 		Http.onreadystatechange = (e) => {
 		  		argget=JSON.parse(Http.responseText);
+				
 				if(argget.night==false){
 					nocniNacin.checked = false;
 					nocniNacinValue.innerHTML = "OFF"
@@ -248,20 +256,31 @@ input:checked + .slider:before {
 					nocniNacin.checked = true;
 					nocniNacinValue.innerHTML = "ON"
 				}
+				
 				if(argget.gra==false){
 					kategorija.checked = false;
 					kategorijaValue.innerHTML = "B"
 				}else{
 					kategorija.checked = true;
 					kategorijaValue.innerHTML = "A"
-				}        
+				}
+				
 				if(argget.maxnight==false){
 					maxNocna.checked = false;
 					maxNocnaValue.innerHTML = "1"
 				}else{
 					maxNocna.checked = true;
 					maxNocnaValue.innerHTML = "2"
+				}
+				
+				if(argget.maslave==false){
+					master.checked = false;
+					masterValue.innerHTML = "N"
+				}else{
+					master.checked = true;
+					masterValue.innerHTML = "Y"
 				}        				
+
 			}
 		   }
 			
@@ -273,6 +292,10 @@ input:checked + .slider:before {
 			}
 			maxNocna.onclick = function maxNocnaSet(){
 				maxNocnaValue.innerHTML = maxNocna.checked ? "2":"1";
+			}
+	
+			master.onclick = function masterSet(){
+				masterValue.innerHTML = master.checked ? "Y":"N";
 			}
 						
 		
@@ -303,9 +326,14 @@ input:checked + .slider:before {
 		rpc_call_post("ControlParam", arg);
 		
 		var arg1 = {app: {night: {speed: speedmax}}};
-		
 		rpc_call_post("ControlParam1", arg1);
 		window.location.href = "index.html";
+
+		var arg2 = {app: {master: master.checked}};
+		rpc_call_post("ControlParam2", arg2);
+		window.location.href = "index.html";
+
+		
 
 	}
 	
